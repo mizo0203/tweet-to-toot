@@ -1,6 +1,7 @@
 package com.mizo0203.twitter.account.activity.api.beta.samples;
 
 import com.mizo0203.twitter.account.activity.api.beta.samples.domain.difine.KeysAndAccessTokens;
+import com.mizo0203.twitter.account.activity.api.beta.samples.repo.GoogleAppEngineMastodonClient;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
 import twitter4j.*;
@@ -81,5 +82,27 @@ public class TwitterHookHandlerServlet extends HttpServlet {
    */
   private void onTweetCreateEvent(long forUserId, Status status) {
     LOG.log(Level.INFO, "onTweetCreateEvent forUserId: " + forUserId + " status: " + status);
+
+    // 自分のツイートで無ければ無視する (自分のリツイートも無視する)
+    if (status.getUser().getId() != forUserId || status.isRetweet()) {
+      return;
+    }
+
+    // 他の Twitter ユーザ宛のツイートであれば無視する
+    long inReplyToUserId = status.getInReplyToUserId();
+    if (inReplyToUserId != -1 && inReplyToUserId != forUserId) {
+      return;
+    }
+
+    com.sys1yagi.mastodon4j.api.entity.Status mastodonStatus =
+        new GoogleAppEngineMastodonClient()
+            .postStatus(
+                status.getText(),
+                null,
+                null,
+                null,
+                null,
+                com.sys1yagi.mastodon4j.api.entity.Status.Visibility.Public);
+    LOG.log(Level.INFO, "onTweetCreateEvent mastodonStatus: " + mastodonStatus);
   }
 }

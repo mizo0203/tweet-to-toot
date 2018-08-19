@@ -21,6 +21,14 @@ Copyright 2015 Google Inc.
     <version>2.0-SNAPSHOT</version>
     <groupId>com.mizo0203.twitter.account.activity.api.beta.samples</groupId>
     <artifactId>account-activity-api-beta-samples</artifactId>
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.google.appengine</groupId>
@@ -81,12 +89,64 @@ Copyright 2015 Google Inc.
         </dependency>
         <!-- [END Twitter4J] -->
 
+        <!-- [START mastodon4j] -->
+        <dependency>
+            <groupId>com.github.sys1yagi.mastodon4j</groupId>
+            <artifactId>mastodon4j</artifactId>
+            <version>[1.6,)</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.sys1yagi.mastodon4j</groupId>
+            <artifactId>mastodon4j-rx</artifactId>
+            <version>[1.6,)</version>
+        </dependency>
+        <!-- [END mastodon4j] -->
+
         <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.11</version>
         </dependency>
+
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-testing</artifactId>
+            <version>1.9.60</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-api-stubs</artifactId>
+            <version>1.9.60</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-tools-sdk</artifactId>
+            <version>1.9.60</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.truth</groupId>
+            <artifactId>truth</artifactId>
+            <version>0.39</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
     <build>
         <!-- for hot reload of the web application -->

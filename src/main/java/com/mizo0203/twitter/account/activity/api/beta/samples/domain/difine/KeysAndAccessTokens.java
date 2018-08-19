@@ -6,4 +6,7 @@ public class KeysAndAccessTokens {
   public static final String CONSUMER_SECRET = "";
   public static final String TOKEN = "";
   public static final String TOKEN_SECRET = "";
+
+  public static final String MASTODON_INSTANCE_NAME = "";
+  public static final String MASTODON_ACCESS_TOKEN = "";
 }
